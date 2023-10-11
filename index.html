@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fluig.totvs.com/style-guide/css/fluig-style-guide.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>VFLOW - Cadastro de Fornecedor/Produto</title>
+  </head>
+  <body>
+    <main class="main-content fluig-style-guide">
+      <header class="fs-text-center">
+        <h1>CADASTRO FORNECEDOR/PRODUTO</h1>
+      </header>
+
+      <form class="container" id="fornecedorForm">
+        <!-- PANEL DADOS DO FORNECEDOR -->
+        <section class="panel panel-primary">
+          <div class="panel-heading fs-color-white fs-bg-info">
+            <h3 class="panel-title">Dados do Fornecedor</h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group col-md-8">
+              <label for="razaoSocial">Razão Social</label>
+              <input
+                type="text"
+                class="form-control"
+                id="razaoSocial"
+                required
+              />
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="cnpj">CNPJ</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cnpj"
+                pattern="\d{2}.\d{3}.\d{3}/\d{4}-\d{2}"
+                maxlength="18"
+                required
+              />
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="nomeFantasia">Nome Fantasia</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nomeFantasia"
+                required
+              />
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="inscricaoEstadual">Inscrição Estadual</label>
+              <input type="text" class="form-control" id="inscricaoEstadual" />
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="cep">CEP</label>
+              <input
+                maxlength="9"
+                pattern="\d{5}-?\d{3}"
+                class="form-control"
+                id="cep"
+                required
+              />
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="inscricaoMunicipal">Inscrição Municipal</label>
+              <input type="text" class="form-control" id="inscricaoMunicipal" />
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="endereco">Endereço</label>
+              <input
+                type="text"
+                class="form-control"
+                id="endereco"
+                required
+                disabled
+              />
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="numero">Número</label>
+              <input type="text" class="form-control" id="numero" required />
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="complemento">Complemento</label>
+              <input type="text" class="form-control" id="complemento" />
+            </div>
+
+            <div class="form-group col-md-5">
+              <label for="bairro">Bairro</label>
+              <input type="text" class="form-control" id="bairro" disabled />
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="municipio">Municipio</label>
+              <input type="text" class="form-control" id="municipio" disabled />
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="estado">Estado</label>
+              <input type="text" class="form-control" id="estado" disabled />
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="contato">Nome da Pessoa de Contato</label>
+              <input type="text" class="form-control" id="contato" required />
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="telefone">Telefone</label>
+              <input
+                pattern="\(\d{2}\) \d{5}-\d{4}"
+                maxlength="15"
+                type="text"
+                class="form-control"
+                id="telefone"
+                required
+              />
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="email">E-mail</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL PRODUTOS -->
+        <section class="panel panel-primary">
+          <div class="panel-heading fs-color-white fs-bg-info">
+            <h3 class="panel-title">Produtos</h3>
+          </div>
+          <div class="panel-body">
+            <div id="produtos">
+              <!-- ADICIONA OS PRODUTOS DINAMICAMENTE -->
+            </div>
+            <button
+              type="button"
+              class="btn btn-success btn-lg btn-block"
+              id="addProduto"
+            >
+              Adicionar Produto
+            </button>
+          </div>
+        </section>
+
+        <!-- PANEL ANEXOS -->
+        <section class="panel panel-primary">
+          <div class="panel-heading fs-color-white fs-bg-info">
+            <h3 class="panel-title">Anexos</h3>
+          </div>
+          <div class="panel-body">
+            <div class="fs-display-flex">
+              <fieldset class="fieldset-border fs-full-width">
+                <legend class="fieldset-border">Itens</legend>
+                <div id="anexos">
+                  <!-- ADICIONA OS ANEXOS DINAMICAMENTE -->
+                </div>
+              </fieldset>
+            </div>
+            <button
+              type="button"
+              class="btn btn-success btn-lg btn-block"
+              id="addAnexo"
+            >
+              Incluir Anexos
+            </button>
+          </div>
+        </section>
+        <button
+          type="submit"
+          class="btn btn-success btn-lg btn-block"
+          id="salvarFornecedor"
+        >
+          Salvar Fornecedor
+        </button>
+      </form>
+
+      <!-- MODAL -->
+      <div
+        class="fs-position-fixed fs-position-top-left fs-full-width modal"
+        id="modal"
+      >
+        <div
+          class="modal-content fs-position-relative fs-display-flex fs-justify-content-center fs-margin-auto fs-xx-huge-margin-vertical fs-lg-padding fs-bg-white"
+        >
+          <div class="content" id="content">
+            <!-- ADICIONA O CONTEÚDO DINAMICAMENTE -->
+          </div>
+          <button
+            type="button"
+            class="btn btn-link fs-position-absolute fs-position-top-right"
+            id="fecharModal"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
